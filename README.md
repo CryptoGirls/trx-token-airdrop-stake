@@ -21,12 +21,16 @@ Edit config.json and modify the lines with your settings:
 
 Edit the following line in accounts.js by replacing TOKEN_NAME with the token name:
 
+```
 let {data} = await xhr.get("https://api.tronscan.org/api/token/TOKEN_NAME/address", {
+```
 
 Edit the following line in votes.js with the SR address (This is mandatory ONLY if you want to give a bonus to the SR's voters):
 
+```
 const CANDIDATE_ADDRESS = '';
 
+```
 
 
 ### Private pool

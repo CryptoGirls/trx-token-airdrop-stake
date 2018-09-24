@@ -2,6 +2,69 @@
 
 Use: To airdrop TOKENS to the holders of a specific token based on their stake proportion on the total circulating supply of that token. If configured, the script gives a bonus to the holders (a proportion from their token balances) if they are voters of a specific SR.
 
+## Dependencies
+```
+sudo apt install python3-pip
+
+sudo pip3 install python-dateutil
+
+sudo pip3 install python-dateutil --upgrade
+
+sudo apt-get install postgresql postgresql-contrib
+
+sudo apt-get install build-dep python-psycopg2
+
+sudo pip3 install psycopg2-binary
+
+sudo pip3 install termcolor
+
+git clone https://github.com/CryptoGirls/trx-token-airdrop-stake
+
+cd trx-token-airdrop-stake
+
+sudo apt install nodejs
+
+sudo apt install npm
+
+npm install axios
+
+- node doesn't work? Install a newer version:
+
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
+sudo apt-get install -y nodejs
+
+```
+
+To not send the private key in plain text to the network, it's recommended to install and configure docker containers made by Rovak. If you won't use the docker, we strongly recommend to use a smaller wallet from which to send the tokens because it can be compromised.
+
+```
+apt install docker docker-compose
+
+git clone https://github.com/tronscan/tronscan-docker
+
+```
+
+In docker-compose.yml file put a full node IP in full and solidity IPs:
+
+```
+      NODE_FULL_IP: "YOUR_SR_IP_HERE"
+      NODE_FULL_PORT: "50051"
+      NODE_SOLIDITY_IP: "YOUR_SR_IP_HERE"
+      NODE_SOLIDITY_PORT: "50051"
+      ENABLE_SYNC: "false"
+      ENABLE_NETWORK_SCANNER: "false"
+      SECRET_KEY: "aSLtAkzrIY9pTPyboOih"
+```
+
+Run it in screen:
+
+```
+./start.sh
+```
+
+Now you should be able to call the API from http://127.0.0.1:9000
+
 ## Configuration
 Edit config.json and modify the lines with your settings:
 
@@ -37,70 +100,6 @@ const CANDIDATE_ADDRESS = '';
 If you want to run a private pool, you need to edit config.json and:
 - private: set to true
 - whitelist: put a list of addresses you wish to include
-
-
-## Dependencies
-```
-sudo apt install python3-pip
-
-sudo pip3 install python-dateutil
-
-sudo pip3 install python-dateutil --upgrade
-
-sudo apt-get install postgresql postgresql-contrib
-
-sudo apt-get install build-dep python-psycopg2
-
-sudo pip3 install psycopg2-binary
-
-sudo pip3 install termcolor
-
-git clone https://github.com/CryptoGirls/trx-token-airdrop-stake
-
-cd trx-token-airdrop-stake
-
-sudo apt install nodejs
-
-sudo apt install npm
-
-npm install axios
-
-- node doesn't work? Install a newer version:
-
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-
-sudo apt-get install -y nodejs
-
-```
-
-To not send the private key in plain text to the network, it's recommended to install and configure docker containers made by Rovak.
-
-```
-apt install docker docker-compose
-
-git clone https://github.com/tronscan/tronscan-docker
-
-```
-
-In docker-compose.yml file put a full node IP in full and solidity IPs:
-
-```
-      NODE_FULL_IP: "YOUR_SR_IP_HERE"
-      NODE_FULL_PORT: "50051"
-      NODE_SOLIDITY_IP: "YOUR_SR_IP_HERE"
-      NODE_SOLIDITY_PORT: "50051"
-      ENABLE_SYNC: "false"
-      ENABLE_NETWORK_SCANNER: "false"
-      SECRET_KEY: "aSLtAkzrIY9pTPyboOih"
-```
-
-Run it in screen:
-
-```
-./start.sh
-```
-
-Now you should be able to call the API from http://127.0.0.1:9000
 
 
 ## Testing it

@@ -10,14 +10,14 @@ Edit config.json and modify the lines with your settings:
 - sraddress: Super Representative's address. This field is mandatory ONLY if you want to give a bonus to the SR's voters
 - owneraddress: The addres from where the token payments will be broadcasted
 - node: node where you get data
-- nodepay: node used for payments. It's recommended to change the nodepay to http://127.0.0.1:9000 after clone and install Rovak's docker containers repo (Please see the details in dependencies section)
+- nodepay: node used for payments. It's recommended to change the nodepay to http://127.0.0.1:9000 after clone and install Rovak's docker containers repo (Please see the details in dependencies section). If you won't use the docker, don't change the nodepay but we strongly recommend to use a smaller wallet from which to send the tokens because it can be compromised.
 - amount: total amount of tokens to distribute (bonuses will be included in this amount)
 - percentagebonusforvoters: percentage you want to give as bonus to the SR's voters; 0 for no bonuses
 - minpayout: the minimum amount for a payout, must be integer (no decimals). Note: All the transactions will be broadcasted with integer token amounts.
-- pk: the private key of your address
+- pk: the private key of the address from which the payments will be sent
 - donations: a list of objects (address: amount) for send static amount every payout
 - donationspercentage: a list of objects (address: percentage) for send static percentage every payout
-- skip: a list of addresses to skip. The script will get all the addresses in the network that owns that specific token. To skip the issuer's wallet you must add that address here. Example: "skip": ["ISSUER_ADDRESS"]
+- skip: a list of addresses to skip. The script will get all the addresses in the network that own that specific token. To skip the issuer's wallet you must add that address here. Example: "skip": ["ISSUER_ADDRESS"]
 
 Edit the following line in accounts.js by replacing TOKEN_NAME with the token name:
 

@@ -102,6 +102,29 @@ Run it in screen:
 
 Now you should be able to call the API from http://127.0.0.1:9000
 
+
+## Testing it
+
+1. Run accounts.js for getting holders' wallets that own the token. You can run the following line as many times as you want, it will clear and fill the data in accounts.json file
+
+```node accounts.js```
+
+2. Run votes.js for getting SR's voters wallets (This step is mandatory ONLY if you want to give a bonus to the SR's voters). You can run the following line as many times as you want, it will clear and fill the data in voters.json file
+
+```node votes.js```
+
+3. Run tokenairdrop.py and press Y/N for saving or not the data. For multiple tests you have to save the original poollogs.json file before running this command. After every test, replace the new poollogs.json file with the original one to test it again. Otherwise, in this file the amounts of every holder will be added at every run.
+Also, the script will prepare the payments to be broadcasted by creating a file called "payments.sh". After running the following command, you can check holders' amounts in poollogs.json file and verify payments commands in payments.sh
+
+```python3 tokenairdrop.py```
+
+The command can be run with autosave parameter:
+
+```python3 tokenairdrop.py -y```
+
+4. Open payments.sh file. You can pick a single line beginning with "curl..." with a small amount of tokens to run it directly from the terminal for testing.
+
+
 ## Running it
 
 1. Run accounts.js for getting holders' wallets that own the token
@@ -112,11 +135,15 @@ Now you should be able to call the API from http://127.0.0.1:9000
 
 ```node votes.js```
 
-3. Run tokenairdrop.py (the script will create a file called "payments.sh")
+3. Run tokenairdrop.py and press Y/N for saving or not the data (the script will create a file called "payments.sh")
 
 ```python3 tokenairdrop.py```
 
-The file "payments.sh" will have all payments shell commands. Run this file with:
+The command can be run with autosave parameter:
+
+```python3 tokenairdrop.py -y```
+
+The file "payments.sh" will have all the payments shell commands. Run this file with:
 
 ```bash payments.sh```
 

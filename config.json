@@ -1,0 +1,20 @@
+{
+	"coin": "TRX",
+	"token": "",
+	"sraddress": "TVMP5r12ymtNerq5KB4E8zAgLDmg2FqsEG",
+	"owneraddress": "",
+	"node": "https://api.tronscan.org",
+	"nodepay": "https://api.tronscan.org",
+	"amount": 0,
+	"percentagebonusforvoters": 0,
+	"logfile": "poollogs.json",
+	"minpayout": 1,
+	"fees": 0,
+	"pk": "",
+    	"donations": {},
+    	"donationspercentage": {},
+	"private": false,
+	"whitelist": [],
+	"skip": []
+}
+

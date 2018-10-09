@@ -138,9 +138,10 @@ def estimatePayouts (log,voterslog,accountslog):
 			continue
 		if conf['private'] and not (x['address'] in conf['whitelist']):
 			continue
-		for z in d['data']:
-			if z['voterAddress']==x['address']:
-				weight+=int(conf['percentagebonusforvoters'])/100*float(x['balance'])
+		if (conf['percentagebonusforvoters']!=0):
+			for z in d['data']:
+				if z['voterAddress']==x['address']:
+					weight+=int(conf['percentagebonusforvoters'])/100*float(x['balance'])
 		weight+=float(x['balance'])
 	totalweight=weight
 	holders=0
@@ -151,10 +152,11 @@ def estimatePayouts (log,voterslog,accountslog):
 			continue
 		if conf['private'] and not (x['address'] in conf['whitelist']):
 			continue
-		for z in d['data']:
-			if z['voterAddress']!=x['address']:
-				continue
-			voters.append({"address": z['voterAddress'], "votes": z['votes']})
+		if (conf['percentagebonusforvoters']!=0):
+			for z in d['data']:
+				if z['voterAddress']!=x['address']:
+					continue
+				voters.append({"address": z['voterAddress'], "votes": z['votes']})
 		holders+=1
 
 	#print ("HOLDERS no:",(colored(str(len(a['data'])),'green')))
@@ -174,12 +176,13 @@ def estimatePayouts (log,voterslog,accountslog):
 			continue
 		weight=float(x['balance'])
 		payouts.append ({"username": x['address'], "weight": weight, "address": x['address'], "balance": round((weight  * forged) / totalweight, 6), "totalweight": totalweight, "forged": float (rew), "votes": 0 })
-		for z in voters:
-			if x['address']==z['address']:
-				weight=float(x['balance'])
-				payouts.remove ({"username": x['address'], "weight": weight, "address": x['address'], "balance": round((weight  * forged) / totalweight, 6), "totalweight": totalweight, "forged": float (rew), "votes": 0 })
-				weight=float(x['balance'])+int(conf['percentagebonusforvoters'])/100*float(x['balance'])
-				payouts.append ({"username": x['address'], "weight": weight, "address": x['address'], "balance": round((weight  * forged) / totalweight, 6), "totalweight": totalweight, "forged": float (rew), "votes": z['votes'] })
+		if (conf['percentagebonusforvoters']!=0):
+			for z in voters:
+				if x['address']==z['address']:
+					weight=float(x['balance'])
+					payouts.remove ({"username": x['address'], "weight": weight, "address": x['address'], "balance": round((weight  * forged) / totalweight, 6), "totalweight": totalweight, "forged": float (rew), "votes": 0 })
+					weight=float(x['balance'])+int(conf['percentagebonusforvoters'])/100*float(x['balance'])
+					payouts.append ({"username": x['address'], "weight": weight, "address": x['address'], "balance": round((weight  * forged) / totalweight, 6), "totalweight": totalweight, "forged": float (rew), "votes": z['votes'] })
 	return (payouts, log, forged)
 	
 	
